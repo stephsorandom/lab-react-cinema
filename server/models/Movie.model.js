@@ -4,10 +4,10 @@ const Schema = mongoose.Schema
 const Movie = mongoose.model('Movie', new Schema ({
   title: String,
   director: String,
-  stars: [''],
+  stars: [String],
   image: String,
   description: String,
-  showtimes: ['']
+  showtimes: [String]
 }))
 
 module.exports = Movie
