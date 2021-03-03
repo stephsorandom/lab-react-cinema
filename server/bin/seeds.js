@@ -82,3 +82,20 @@ const movies = [
     showtimes: ['13:00', '15:30', '18:00', '20:10', '22:40']
   }
 ];
+
+//Connection to database
+mongoose
+.connect(MONGODB_URI, {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(self => {
+  console.log( `Connected to the database: "${self.connection.name}"`)
+  //Before adding any docs to database, delete previous entries
+  return self.connection.dropDatabase()
+})
+.then(async() => {
+//Run code here, after connection has been made
+await Movie.insertMany(movies).then(console.log)
+})
